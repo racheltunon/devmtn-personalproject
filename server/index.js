@@ -6,7 +6,7 @@ const {registerClient} = require('./controllers/authController')
 
 const app = express();
 
-let {SERVER_PORT, SESSION_SECRET} = process.env;
+let {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 
 app.use(express.json());
 app.use(
@@ -15,7 +15,7 @@ app.use(
         resave: false,
         saveUninitialized: true,
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 7 
+            maxAge: 1000 * 60 * 60 * 24 * 3 
         }
     })
 )
@@ -24,7 +24,7 @@ app.use(
 app.post('/auth/register', registerClient)
 
 
-massive(process.env.CONNECTION_STRING).then(db => {
+massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
     console.log('Database Connected');
 })

@@ -15,15 +15,15 @@ import Settings from '../components/User/Account/Settings'
 export default (
     <Switch>
         <Route component = {Landing} exact path = '/' />
-        <Route component = {About} exact path = '/about' />
-        <Route component = {Login} exact path = '/login' />
-        <Route component = {Register} exact path = '/register' />
-        <Route component = {ShoppingCart} exact path = '/cart' />
-        <Route component = {Favorites} exact path = './saved'/>
-        <Route component = {Dashboard} exact path = '/dashboard' />
-        <Route component = {Categories} exact path = '/dashboard/:categories' />
-        <Route component = {Account} exact path = '/account' />
-        <Route component = {Settings} exact path = '/account/:settings' />
+        <Route component = {About} path = '/about' />
+        <Route component = {Login}  path = '/login' />
+        <Route component = {Register} path = '/register' />
+        <Route component = {ShoppingCart} path = '/cart' />
+        <Route component = {Favorites} path = './saved'/>
+        <Route component = {Dashboard} path = '/dashboard' />
+        <Route component = {Categories} path = '/dashboard/:categories' />
+        <Route component = {Account} path = '/account' />
+        <Route component = {Settings} path = '/account/:settings' />
     </Switch>
 )
 
