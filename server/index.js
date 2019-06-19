@@ -2,7 +2,8 @@ require('dotenv').config();
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
-const {registerClient} = require('./controllers/authController')
+const {registerClient, loginClient, logoutClient} = require('./controllers/authController')
+const {displayCategories} = require('./controllers/storeController')
 
 const app = express();
 
@@ -22,6 +23,10 @@ app.use(
 
 ///Endpoints///
 app.post('/auth/register', registerClient)
+app.post('/auth/login', loginClient)
+app.post('/auth/logout', logoutClient)
+app.get('/api/categories', displayCategories)
+// app.get('api/categories')
 
 
 massive(CONNECTION_STRING).then(db => {

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios'
+import {Redirect, Link} from 'react-router-dom';
 import './Register.css'
 
 export default class Register extends Component {
@@ -9,7 +10,8 @@ export default class Register extends Component {
             name: '',
             username: '',
             email: '',
-            password: ''
+            password: '',
+            redirect: false
         }
         this.handleName=this.handleName.bind(this)
         this.handleUsername=this.handleUsername.bind(this)
@@ -31,13 +33,20 @@ export default class Register extends Component {
         this.setState({password: e.target.value})
     }
     registerClient() {
-        axios.post('/auth/register', 
-        {name: this.state.name, username: this.state.username, email: this.state.email, password: this.state.password}
-        ).then(res => {console.log(res.data)})
+        axios.post('/auth/register', {
+            name: this.state.name, 
+            username: this.state.username, 
+            email: this.state.email, 
+            password: this.state.password}
+        ).then(() => this.setState({redirect: true})).catch(() => alert('Username Taken. Try a different one.'))
     }
 
 
     render() {
+        if(this.state.redirect) {
+            alert('Registration successful')
+            return <Redirect to='/dashboard' />
+        }
         return (
             <div className="register">
                 <h1>Sign-up</h1>
@@ -46,9 +55,13 @@ export default class Register extends Component {
                     <input onChange={this.handleUsername} placeholder="violetriot123"/>
                     <input onChange={this.handleEmail} placeholder="violetriot@gmail.com"/>
                     <input onChange={this.handlePassword} placeholder="password"type="password"/>
-                    
+                    <button onClick={this.registerClient}>Register</button>
                 </form>
-                    <button>Register</button>
+                <h2>Already have an account?</h2>
+                <Link to='/login'>
+                <button>login</button>
+                </Link>
+                    
             </div>
         )
     }

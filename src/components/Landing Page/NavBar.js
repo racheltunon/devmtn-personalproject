@@ -13,7 +13,7 @@ function NavBar() {
                     <button>Favorites</button>
                 </Link>
                 <Link to='/register'>
-                    <button>Register</button>
+               <button>Register</button>
                 </Link>
                 <Link to='/cart'>
                     <button>Cart</button>

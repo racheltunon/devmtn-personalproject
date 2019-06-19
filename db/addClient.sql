@@ -1,1 +1,1 @@
-INSERT INTO clients (username, password) VALUES ($1, $2)
+INSERT INTO clients (name, username, email, password) VALUES ($1, $2, $3, $4)
